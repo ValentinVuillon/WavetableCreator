@@ -2,29 +2,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.io.wavfile import write
 
-#a faire:
-#-ajouter labels x, y, z sur plot matplotlib
-#-creer un operateur qui prend une fonction t fait une serie de ces fonctions, avec rotation, en utilisant l'operateur rotation.
-#-creer un operateur qui fait un filtrage->convolution avec une gaussienne.
-#creer un autre code pour ça: créeer un code qui prend une wavetable de serum, la transforme en fonction 2D puis fait un filtrage avec un kernel. Ensuite en changeant le kernel je changerai la nature du filtre.
-
-#ce code permet de creer des wavetables pour serum, ableton wavetable. 
-
-#les axes sont
-#      1 y
-#       /
-#      /
-#     /
-# -1 /
-#  -1-----------1x
-#
-#et z est vers le haut
-
 #---------------------------------------------------
 
 #fonctions
 
-#fonctions simples
+#simple functions
 
 #cosinus de pulsation w
 def fs1(x, y,w):   
