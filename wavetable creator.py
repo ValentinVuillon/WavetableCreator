@@ -6,7 +6,7 @@ from scipy.io.wavfile import write
 
 #fonctions
 
-#simple functions
+#fonction simples
 
 #cosinus de pulsation w
 def fs1(x, y,w):   
@@ -197,7 +197,7 @@ for i in range(waveform_number):
     for j in range(sample_number_x):
         wav[j+i*sample_number_x]=Z[i][j]
 
-rate = 44100 #je peux mettre n'importe quoi, c'est sans importance
+rate = 44100 # c'est sans importance
 if prototypage==False:
     write('wavetable.wav', rate, wav)
 
