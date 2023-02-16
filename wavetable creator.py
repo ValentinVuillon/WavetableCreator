@@ -4,11 +4,11 @@ from scipy.io.wavfile import write
 
 #---------------------------------------------------
 
-#fonctions
+#functions
 
-#fonction simples
+#simple functions
 
-#cosinus de pulsation w
+#cosine of pulsation w
 def fs1(x, y,w):   
     return np.cos(w*x)
 
@@ -18,18 +18,18 @@ def fs2(x, y, w):
 def fs3(x, y, w):  
     return np.cos(w*(y+1)*2*x)
 
-#gaussienne 2D d'ecart type s
+#2D Bell curve with parameter s 
 def fs4(x,y,s):    
     return np.exp(-(s*x)**2-(s*y)**2)
 
- #sinus cardinal 2D de pulsation w
+ #2D cardinal sine with pulsation w
 def fs5(x,y,w):  
     return np.sin(w*x)*np.sin(w*y)/(w**2*x*y)
 
 
 
 
-#fonctions complexes (fonctions définies à partir d'autres fonctions)
+#complex functions (functions defined with other functions)
 def fc1(x,y):
     return signe(fs1(x,y,10))
 
@@ -75,11 +75,11 @@ def fc14(x,y):
 
     
 
-#operateurs (agissent sur fonctions 2D)
+#operators (they act on 2D functions)
 
-#operateurs simples
+#simple operators
 
-#prend une fonction 2D et retourne son signe
+#take a function and returns its sign
 def signe(arr):  
     arr1=arr
     for i in range(waveform_number):
@@ -91,7 +91,7 @@ def signe(arr):
     return arr1
 
 
-#prend une fonction 2D et la démultiplie. N: nombre de copies. d: définit distance entre les copies.
+#take a function and demultpliy it. N: number of copies. d: définines distance between copies.
 def demultiplication_translation_somme_2args(N,d, x,y, f):     
     arr1=np.zeros([waveform_number, sample_number_x])
     for a in np.linspace(-d,d,N):
@@ -131,11 +131,11 @@ def demultiplication_translation_somme_4args(N,d,x,y, f, extra_parameter1, extra
       
     return arr1/4
 
-#une transformation qui agit sur l'ensemble de valeurs x, y c'est comme les warps de serum (on pourrait faire les bend warp comme ça)
+#an operator which acts on x and y
 def x_warp_3args(x,y,f,extra_parameter1):  
     return f(-x**2,y,extra_parameter1)
 
-#operateur qui fait une rotation suivant axe -z d'un angle theta en radian de la fonction donnée en argument
+#an operator which make the function rotate around -z with an angle theta in radian
 def rotation_2args(theta, x,y,f):  
     x_prime=np.cos(theta)*x-np.sin(theta)*y
     y_prime=np.sin(theta)*x+np.cos(theta)*y
@@ -148,27 +148,27 @@ def rotation_3args(theta, x,y,f,extra_parameter1):
     
     return f(x_prime, y_prime,extra_parameter1)
 
-#operateurs complexes (operateurs définis à partir d'autres operateurs)
+#complex operators (operators defined from other operators)
 
 
 #---------------------------------------------------
 
-prototypage=0
+prototyping=0
 
-if prototypage==True:
-    sample_number_x=60
+if prototyping==True:
+    sample_number=60
     waveform_number=60 
 else:
-    sample_number_x=2048  #nb de samples dans une wavetable. Pour serum mettre 2048. Pour wavetable mettre 1024.
+    sample_number=2048  #number of samples per wavetables.For serum 2048. For ableton wavetable 1024.
     waveform_number=256 
 
 
-x = np.linspace(-1, 1, sample_number_x)
+x = np.linspace(-1, 1, sample_number)
 y = np.linspace(-1, 1, waveform_number)
 
 X, Y = np.meshgrid(x, y)
 
-Z = fc4(X,Y,10,4)  #changer ici la fonction, c'est elle qui formera la wavetable
+Z = fc4(X,Y,10,4)  #change the function name here. This function will become the wavetable
 
 
 #je coupe tout valeur au delà de -1 et 1, c'est ce que fait serum, ableton wavetable
@@ -181,7 +181,7 @@ for i in range(waveform_number):
             
             
 #visualisation de la wavetable que serum créera
-if prototypage==True:
+if prototyping==True:
     fig = plt.figure()
     ax = plt.axes(projection='3d')
     ax.plot_surface(X, Y, Z, rstride=1, cstride=1,cmap='jet', edgecolor = 'none')
@@ -198,7 +198,7 @@ for i in range(waveform_number):
         wav[j+i*sample_number_x]=Z[i][j]
 
 rate = 44100 # c'est sans importance
-if prototypage==False:
+if prototyping==False:
     write('wavetable.wav', rate, wav)
 
 #consignes d'importation:
