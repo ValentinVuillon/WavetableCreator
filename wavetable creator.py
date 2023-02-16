@@ -200,7 +200,3 @@ for i in range(waveform_number):
 rate = 44100 # c'est sans importance
 if prototyping==False:
     write('wavetable.wav', rate, wav)
-
-#consignes d'importation:
-#serum: importer avec decoupe tous les 2048 samples
-#ableton wavetable: importer puis mettre option "raw"
