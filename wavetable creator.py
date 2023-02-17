@@ -172,7 +172,7 @@ X, Y = np.meshgrid(x, y)
 Z = fc4(X,Y,10,4)  #change the function name here. This function will become the wavetable
 
 
-#I cut any values below -1 and above 1 it's what serum and ableton wavetable does
+#I cut any values below -1 and above 1 it's what serum and ableton wavetable doe
 for i in range(waveform_number):
     for j in range(sample_number):
         if Z[i][j]>1:
