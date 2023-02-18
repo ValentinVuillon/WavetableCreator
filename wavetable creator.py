@@ -154,7 +154,7 @@ def rotation_3args(theta, x,y,f,extra_parameter1):
 
 #---------------------------------------------------
 
-prototyping=0
+prototyping=1
 
 if prototyping==True:
     sample_number=60
