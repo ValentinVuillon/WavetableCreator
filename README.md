@@ -1,3 +1,6 @@
+Note: You need to be able to run a python code to use this tool!
+
+
 To create a wavetable:
 
 -create a function. You can use the function already available and the already available operators. You can create new functions and new operators. The possibilities are endless
